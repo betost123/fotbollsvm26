@@ -40,6 +40,7 @@ export function NavBar() {
   return (
     <Bar>
       <Brand>VM 2026</Brand>
+      <Link to="/" end>Hem</Link>
       <Link to="/tipsa">Tipsa</Link>
       <Link to="/tabell">Tabell</Link>
       <Link to="/regler">Regler</Link>

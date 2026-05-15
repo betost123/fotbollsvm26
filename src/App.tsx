@@ -5,6 +5,7 @@ import { GlobalStyle } from './styles/GlobalStyle';
 import { AuthProvider, useAuth } from './auth/AuthContext';
 import { LoginPage } from './auth/LoginPage';
 import { Layout } from './components/Layout';
+import { StartPage } from './pages/StartPage';
 import { TipsPage } from './pages/TipsPage';
 import { LeaderboardPage } from './pages/LeaderboardPage';
 import { RulesPage } from './pages/RulesPage';
@@ -18,13 +19,13 @@ function Gate() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<Navigate to="/tipsa" replace />} />
+        <Route index element={<StartPage />} />
         <Route path="/tipsa" element={<TipsPage />} />
         <Route path="/tabell" element={<LeaderboardPage />} />
         <Route path="/regler" element={<RulesPage />} />
         <Route path="/profil" element={<ProfilePage />} />
         <Route path="/admin" element={<AdminPage />} />
-        <Route path="*" element={<Navigate to="/tipsa" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
   );
