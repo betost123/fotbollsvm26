@@ -65,18 +65,6 @@ const CtaButton = styled(Link)<{ $variant?: "primary" | "ghost" }>`
   }
 `;
 
-const Pot = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing(2)};
-  background: ${({ theme }) => theme.colors.accent};
-  color: ${({ theme }) => theme.colors.text};
-  border-radius: ${({ theme }) => theme.radii.pill};
-  padding: ${({ theme }) => `${theme.spacing(2)} ${theme.spacing(4)}`};
-  font-weight: 700;
-  margin-bottom: ${({ theme }) => theme.spacing(4)};
-`;
-
 export function StartPage() {
   const { profile } = useAuth();
   const greeting = profile?.name ? `Hej ${profile.name}!` : "Hej!";
