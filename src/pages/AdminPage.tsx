@@ -4,6 +4,7 @@ import { useMatches } from '../hooks/useMatches';
 import { useAuth } from '../auth/AuthContext';
 import { supabase } from '../lib/supabase';
 import { formatKickoff } from '../lib/time';
+import { flagFor } from '../lib/flags';
 import type { Match } from '../lib/database.types';
 
 const PageTitle = styled.h1`
@@ -92,7 +93,9 @@ function AdminMatchRow({ match }: { match: Match }) {
   return (
     <MatchRow>
       <div>
-        <strong>{match.home_team}</strong> – <strong>{match.away_team}</strong>
+        <strong>{flagFor(match.home_team)} {match.home_team}</strong>
+        {' – '}
+        <strong>{match.away_team} {flagFor(match.away_team)}</strong>
         <div style={{ fontSize: '0.8rem', color: '#6B7280' }}>
           {formatKickoff(match.kickoff)}
         </div>

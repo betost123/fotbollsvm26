@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import type { Match, Bet } from '../lib/database.types';
 import { formatKickoff, isLocked } from '../lib/time';
 import { pointsForBet } from '../lib/scoring';
+import { flagFor } from '../lib/flags';
 
 const Card = styled.div<{ $locked: boolean }>`
   background: ${({ theme }) => theme.colors.surface};
@@ -26,6 +27,14 @@ const Team = styled.div<{ $align: 'left' | 'right' }>`
 const TeamName = styled.div`
   font-weight: 600;
   font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(2)};
+`;
+
+const Flag = styled.span`
+  font-size: 1.4rem;
+  line-height: 1;
 `;
 
 const ScoreInputs = styled.div`
@@ -138,7 +147,10 @@ export function MatchCard({ match, bet, onSave }: Props) {
   return (
     <Card $locked={locked}>
       <Team $align="left">
-        <TeamName>{match.home_team}</TeamName>
+        <TeamName>
+          {flagFor(match.home_team) && <Flag aria-hidden="true">{flagFor(match.home_team)}</Flag>}
+          {match.home_team}
+        </TeamName>
         {finished && (
           <Badge $variant="locked">Resultat: {match.home_score}</Badge>
         )}
@@ -167,7 +179,10 @@ export function MatchCard({ match, bet, onSave }: Props) {
         />
       </ScoreInputs>
       <Team $align="right">
-        <TeamName>{match.away_team}</TeamName>
+        <TeamName>
+          {match.away_team}
+          {flagFor(match.away_team) && <Flag aria-hidden="true">{flagFor(match.away_team)}</Flag>}
+        </TeamName>
         {finished && (
           <Badge $variant="locked">Resultat: {match.away_score}</Badge>
         )}
